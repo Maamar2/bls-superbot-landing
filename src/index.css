@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #080808;
+  --border: #1f2028;
+  --code-bg: #1f2028;
+  --accent: #10b981;
+  --accent-bg: rgba(16, 185, 129, 0.1);
+  --accent-border: rgba(16, 185, 129, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+@theme {
+  --color-brand: #10b981;
+  --color-brand-dark: #064e3b;
+  --color-brand-glow: rgba(16, 185, 129, 0.5);
+  
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-cursor-blink: cursor-blink 1s step-end infinite;
+  --animate-fade-in: fadeIn 0.3s ease-in forwards;
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+  }
+
+  @keyframes cursor-blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+}
+
+/* Custom glow effect for the hero title */
+.glow-text {
+  text-shadow: 0 0 20px var(--color-brand-glow), 0 0 40px rgba(34, 211, 238, 0.3);
+}
+
+/* Custom button styles to match the design */
+.btn-primary {
+  @apply bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 px-6 rounded-lg transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2;
+}
+
+.nav-link {
+  @apply text-zinc-400 hover:text-white transition-colors text-sm font-medium;
+}
