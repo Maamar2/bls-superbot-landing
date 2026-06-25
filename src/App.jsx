@@ -1399,8 +1399,9 @@ const App = () => {
             </div>
             
             <h1 className="text-6xl md:text-8xl font-black text-white tracking-tight mb-8 leading-tight flex flex-col items-center justify-center">
-              <span className="opacity-95">{t('hero.title1')}</span>
-              <span className="glow-text mt-2 block">
+              <span className="sr-only">Automate Your BLS Spain Visa Appointments – WAF &amp; Captcha Bypass, 24/7 Slot Hunting</span>
+              <span className="opacity-95" aria-hidden="true">{t('hero.title1')}</span>
+              <span className="glow-text mt-2 block" aria-hidden="true">
                 <TypewriterText phrases={t('hero.phrases')} />
               </span>
             </h1>
