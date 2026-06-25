@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { CheckCircle2, Zap, Crown, Building2, MessageCircle, Activity } from 'lucide-react';
-import { LanguageContext } from '../App';
+import { LanguageContext } from '../context/LanguageContext';
 
 const WHATSAPP_NUMBER = "213552675571";
 const WHATSAPP_MESSAGE = encodeURIComponent("Hello! I am interested in getting a license for BLS SUPERBOT.");
