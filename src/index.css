@@ -1,64 +1,195 @@
 @import "tailwindcss";
 
 :root {
-  --text: #9ca3af;
-  --text-h: #f3f4f6;
-  --bg: #080808;
-  --border: #1f2028;
-  --code-bg: #1f2028;
+  --bg: #000000;
+  --surface: #080808;
+  --surface2: #0f0f0f;
+  --card: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.07);
+  --border-accent: rgba(16,185,129,0.25);
   --accent: #10b981;
-  --accent-bg: rgba(16, 185, 129, 0.1);
-  --accent-border: rgba(16, 185, 129, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
-  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --accent-glow: rgba(16,185,129,0.5);
+  --cyan: #22d3ee;
+  --violet: #8b5cf6;
+  --text: #94a3b8;
+  --text-h: #f1f5f9;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --heading: 'Space Grotesk', system-ui, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 }
 
 @theme {
   --color-brand: #10b981;
-  --color-brand-dark: #064e3b;
-  --color-brand-glow: rgba(16, 185, 129, 0.5);
-  
+  --color-brand-glow: rgba(16,185,129,0.5);
+
   --animate-scanline: scanline 8s linear infinite;
   --animate-cursor-blink: cursor-blink 1s step-end infinite;
   --animate-fade-in: fadeIn 0.3s ease-in forwards;
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-scale-in: scaleIn 0.2s ease-out forwards;
+  --animate-progress: progress 2s ease-in-out infinite;
 
   @keyframes scanline {
     0% { transform: translateY(-100%); }
     100% { transform: translateY(1000%); }
   }
-
   @keyframes cursor-blink {
     from, to { opacity: 1; }
     50% { opacity: 0; }
   }
-
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes ping {
+    75%, 100% { transform: scale(2); opacity: 0; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  /* UI UX Pro Max Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+    50% { box-shadow: 0 0 40px rgba(16,185,129,0.6); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 }
+
+/* Animation utility classes - must be outside @theme block */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out forwards;
+  opacity: 0;
+}
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+  opacity: 0;
+}
+.animate-glowPulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom glow effect for the hero title */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading);
+  color: var(--text-h);
+}
+
+/* Glow text */
 .glow-text {
-  text-shadow: 0 0 20px var(--color-brand-glow), 0 0 40px rgba(34, 211, 238, 0.3);
+  text-shadow: 0 0 30px rgba(16,185,129,0.6), 0 0 60px rgba(34,211,238,0.2);
 }
 
-/* Custom button styles to match the design */
-.btn-primary {
-  @apply bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 px-6 rounded-lg transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] flex items-center justify-center gap-2;
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(16px);
+}
+.glass-accent {
+  background: rgba(16,185,129,0.04);
+  border: 1px solid rgba(16,185,129,0.18);
+  backdrop-filter: blur(16px);
 }
 
-.nav-link {
-  @apply text-zinc-400 hover:text-white transition-colors text-sm font-medium;
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Neon button */
+.btn-neon {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #000;
+  font-weight: 800;
+  font-family: var(--heading);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(16,185,129,0.35);
+  cursor: pointer;
+display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-neon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(16,185,129,0.55);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
