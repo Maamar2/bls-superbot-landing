@@ -45,9 +45,9 @@ const DOWNLOAD_LINK = "https://youraccount.blob.core.windows.net/downloads/bls-s
 const translations = {
   en: {
     seo: {
-      title: "BLS Superbot | Ultimate Auto Appointment Booking Bot & WAF Bypass",
-      description: "Automate your BLS Spain appointment bookings. BLS Superbot features auto mode, zero-click captcha bypass, 429 proxy rotation, and liveness biometric defeat.",
-      keywords: "bls bot, bls appointment bot, bls spain bot, bls algeria bot, auto booking bot, bls visa bot, captcha bypass, playwright bot"
+      title: "BLS Superbot — Auto Book Spain Visa Appointments 24/7 | BLS Algeria, Morocco, Turkey",
+      description: "Automate your BLS Spain visa appointment booking from Algeria, Morocco & Turkey. TurboPulse™ engine secures slots in under 1 second with captcha bypass, proxy rotation and biometric liveness defeat.",
+      keywords: "BLS Spain visa appointment bot, BLS Algeria auto book, BLS Morocco bot, BLS Turkey booking, Spain visa slot hunter, visa automation, captcha bypass bot, auto visa Algeria"
     },
     nav: { features: "Features", stealth: "Stealth System", performance: "Performance", speed: "Benchmark", workflows: "Workflows", proof: "Live Results", biometrics: "Biometrics", license: "Get License" },
     hero: {
@@ -171,9 +171,9 @@ const translations = {
   },
   ar: {
     seo: {
-      title: "BLS Superbot | أقوى بوت حجز مواعيد BLS تلقائي",
-      description: "احجز مواعيد فيزا إسبانيا BLS تلقائياً. بوت BLS متقدم يدعم تجاوز الكابتشا، تدوير البروكسي لتخطي حظر 429، وتخطي فحص الحيوية (البيومتري) للجزائر والدول الأخرى.",
-      keywords: "بوت bls, حجز مواعيد bls, بوت فيزا اسبانيا, سكربت مواعيد bls, بوت مواعيد الجزائر, تخطي كابتشا bls, حجز تلقائي"
+      title: "BLS Superbot — حجز تلقائي لمواعيد تأشيرة إسبانيا 24/7 | الجزائر، المغرب، تركيا",
+      description: "احجز مواعيد تأشيرة إسبانيا من الجزائر والمغرب وتركيا تلقائياً. محرك TurboPulse™ يحجز المواعيد في أقل من ثانية مع تجاوز الكابتشا وتدوير البروكسي.",
+      keywords: "بوت حجز مواعيد BLS, حجز تلقائي تأشيرة اسبانيا الجزائر, بوت موعد BLS المغرب, حجز تأشيرة تركيا, صيد مواعيد فيزا اسبانيا, بوت كابتشا BLS"
     },
     nav: { features: "المميزات", stealth: "نظام التخفي", performance: "الأداء", speed: "مقارنة السرعة", workflows: "آلية العمل", proof: "النتائج الحية", biometrics: "البيومتري", license: "احصل على الترخيص" },
     hero: {
@@ -297,9 +297,9 @@ const translations = {
   },
   tr: {
     seo: {
-      title: "BLS Superbot | En İyi Otomatik BLS Randevu Botu",
-      description: "BLS İspanya vize randevularınızı otomatikleştirin. Captcha atlama, 429 proxy rotasyonu ve biyometrik canlılık doğrulamasını geçen gelişmiş BLS botu.",
-      keywords: "bls botu, bls randevu botu, ispanya vizesi botu, otomatik randevu, bls türkiye botu, bls randevu scripti, captcha geçme"
+      title: "BLS Superbot — İspanya Vize Randevularını 7/24 Otomatik Booking | BLS Cezayir, Fas, Türkiye",
+      description: "Cezayir, Fas ve Türkiye'den İspanya BLS vize randevularınızı otomatikleştirin. TurboPulse™ motoru captcha atlama, proxy rotasyonu ve biyometrik canlılık doğrulamasıyla 1 saniyeden kısa sürede randevu alır.",
+      keywords: "BLS İspanya vize randevusu bot, BLS Cezayir otomatik randevu, BLS Fas randevu botu, BLS Türkiye otomatik rezervasyon, İspanya vize slot avcısı, vize randevu otomasyonu, captcha atlama botu"
     },
     nav: { features: "Özellikler", stealth: "Gizlilik Sistemi", performance: "Performans", speed: "Karşılaştırma", workflows: "İş Akışları", proof: "Canlı Sonuçlar", biometrics: "Biyometri", license: "Lisans Al" },
     hero: {
@@ -474,7 +474,7 @@ const SEOManager = () => {
       "@type": "SoftwareApplication",
       "name": "BLS SUPERBOT",
       "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Windows, Linux, macOS",
+      "operatingSystem": "Windows",
       "description": t('seo.description'),
       "offers": {
         "@type": "Offer",
@@ -489,7 +489,71 @@ const SEOManager = () => {
         "ratingCount": "184"
       }
     };
-    structuredData.innerHTML = JSON.stringify(schemaJSON);
+
+    const faqJSON = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is BLS Superbot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BLS Superbot is an automated bot that books Spain BLS visa appointments for applicants in Algeria, Morocco, and Turkey. It uses TurboPulse™ technology to secure slots in under 1 second, bypassing captchas and rate limits automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which countries does BLS Superbot support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BLS Superbot currently supports Spain BLS appointment booking for Algeria, Morocco, and Turkey. It handles all three BLS centers including Algiers, Casablanca, Istanbul, and other supported locations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast can BLS Superbot book a visa appointment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BLS Superbot's TurboPulse™ engine can secure a visa appointment slot in under 1 second. It uses dual-mode API hunting combined with captcha bypass to outpace human applicants."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does BLS Superbot handle captchas automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. BLS Superbot features zero-click captcha bypass using ReCaptcha V3 interception and AI-powered token injection, so appointments are secured without any manual intervention."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens when BLS blocks the bot with a 429 error?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BLS Superbot's Automated 429 Recovery Loop detects rate limit errors, rotates to a new proxy IP, regenerates browser fingerprints, and resumes hunting within seconds — fully automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can BLS Superbot handle biometric liveness checks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Biometric Mission Control module injects fake Y4M video streams via navigator.mediaDevices to defeat algorithmic liveness checks, handling the entire process automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get a BLS Superbot license?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contact us directly via WhatsApp to purchase a license. The bot is available as a Windows executable and supports multi-seat licensing for travel agencies."
+          }
+        }
+      ]
+    };
+
+    structuredData.innerHTML = JSON.stringify([schemaJSON, faqJSON]);
   }, [lang, t]);
 
   return null; 
