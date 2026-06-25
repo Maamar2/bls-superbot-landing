@@ -715,7 +715,6 @@ const Navbar = () => {
               <a href="#workflows" className="text-white/60 hover:text-white transition-all duration-300 px-1 py-2 text-[13px] tracking-tight cursor-pointer">{t('nav.workflows')}</a>
               <a href="#proof" className="text-white/60 hover:text-white transition-all duration-300 px-1 py-2 text-[13px] tracking-tight cursor-pointer">{t('nav.proof')}</a>
               <a href="#biometrics" className="text-white/60 hover:text-white transition-all duration-300 px-1 py-2 text-[13px] tracking-tight cursor-pointer">{t('nav.biometrics')}</a>
-              <Link to="/pricing" className="text-white/60 hover:text-white transition-all duration-300 px-1 py-2 text-[13px] tracking-tight cursor-pointer">{t('nav.pricing')}</Link>
               <Link to="/pricing" className="text-emerald-400 hover:text-emerald-300 transition-all duration-300 px-1 py-2 text-[13px] tracking-tight cursor-pointer font-bold">{t('nav.pricing')}</Link>
             </div>
             

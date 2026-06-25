@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CheckCircle2, Zap, Crown, Building2 } from 'lucide-react';
+import { CheckCircle2, Zap, Crown, Building2, MessageCircle, Activity } from 'lucide-react';
 import { LanguageContext } from '../App';
 
 const WHATSAPP_NUMBER = "213552675571";
@@ -8,11 +8,13 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}
 
 const pricingTranslations = {
   en: {
+    nav: { pricing: "Pricing" },
     pricing: {
       badge: "Simple Pricing",
       title: "Choose Your Plan",
       subtitle: "Select the license that fits your needs. All plans include full bot access, automatic updates, and setup support.",
       usdtNote: "Pay via USDT (TRC-20). License key sent automatically after payment.",
+      backHome: "Back to Home",
       starter: {
         name: "Starter",
         price: "$120",
@@ -63,11 +65,13 @@ const pricingTranslations = {
     },
   },
   ar: {
+    nav: { pricing: "الأسعار" },
     pricing: {
       badge: "تسعير بسيط",
       title: "اختر خطتك",
       subtitle: "اختر الترخيص الذي يناسب احتياجاتك. جميع الخطط تشمل الوصول الكامل للبوت والتحديثات التلقائية والدعم.",
       usdtNote: "الدفع عبر USDT (TRC-20). يتم إرسال مفتاح الترخيص تلقائياً بعد الدفع.",
+      backHome: "العودة للرئيسية",
       starter: {
         name: "ستارتر",
         price: "$120",
@@ -118,11 +122,13 @@ const pricingTranslations = {
     },
   },
   tr: {
+    nav: { pricing: "Fiyatlandırma" },
     pricing: {
       badge: "Basit Fiyatlandırma",
       title: "Planınızı Seçin",
       subtitle: "İhtiyaçlarınıza uygun lisansı seçin. Tüm planlar tam bot erişimi, otomatik güncellemeler ve kurulum desteği içerir.",
       usdtNote: "USDT (TRC-20) ile ödeme yapın. Lisans anahtarı ödeme sonrasında otomatik olarak gönderilir.",
+      backHome: "Ana Sayfaya Dön",
       starter: {
         name: "Başlangıç",
         price: "$120",
@@ -149,7 +155,7 @@ const pricingTranslations = {
           "Sınırsız randevu",
           "Başlangıç'taki her şey",
           "Çoklu koltuk (5 kullanıcı)",
-          " öncelikli destek",
+          "Öncelikli destek",
           "WhatsApp grubu erişimi",
           "6 aylık lisans anahtarı",
         ],
@@ -174,17 +180,15 @@ const pricingTranslations = {
   },
 };
 
-// Helper to get pricing translation
 const usePricingT = () => {
   const { lang } = useContext(LanguageContext);
   return pricingTranslations[lang]?.pricing || pricingTranslations.en.pricing;
 };
 
-const PlanCard = ({ plan, isHighlighted, badge, index }) => {
+const PlanCard = ({ plan, isHighlighted, index }) => {
   const { lang } = useContext(LanguageContext);
   const isRTL = lang === 'ar';
-
-  const icons = [<Zap className="w-6 h-6" />, <Crown className="w-6 h-6" />, <Building2 className="w-6 h-6" />];
+  const icons = [<Zap className="w-5 h-5" />, <Crown className="w-5 h-5" />, <Building2 className="w-5 h-5" />];
 
   return (
     <div
@@ -195,18 +199,15 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
         hover:-translate-y-2 hover:shadow-2xl hover:scale-[1.02]
         group
         ${isHighlighted
-          ? 'border-emerald-500/60 shadow-[0_0_40px_rgba(16,185,129,0.15),inset_0_1px_0_rgba(16,185,129,0.2)]'
-          : 'border-zinc-800 hover:border-zinc-700 shadow-lg hover:shadow-zinc-900/50'
+          ? 'border-emerald-500/60 shadow-[0_0_40px_rgba(16,185,129,0.15)]'
+          : 'border-zinc-800 hover:border-zinc-700 shadow-lg'
         }
-        ${index === 0 ? 'col-span:md:col-span-1' : ''}
       `}
     >
-      {/* Background glow for highlighted */}
       {isHighlighted && (
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-emerald-500/5 to-transparent pointer-events-none" />
       )}
 
-      {/* Most Popular badge */}
       {plan.mostPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
           <div className="bg-emerald-500 text-black text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.4)]">
@@ -215,9 +216,8 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
         </div>
       )}
 
-      {/* Icon */}
       <div className={`flex items-center gap-3 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
-        <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${
+        <div className={`w-11 h-11 rounded-xl flex items-center justify-center border ${
           isHighlighted
             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
             : 'bg-zinc-800 border-zinc-700 text-zinc-400 group-hover:border-zinc-600 group-hover:text-zinc-300'
@@ -229,7 +229,6 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
         </h3>
       </div>
 
-      {/* Price */}
       <div className={`flex items-baseline gap-1 mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
         <span className={`text-4xl font-black text-white ${plan.price === 'Custom' ? 'text-3xl' : ''}`}>
           {plan.price}
@@ -237,15 +236,12 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
         <span className="text-zinc-500 font-semibold">{plan.period}</span>
       </div>
 
-      {/* Description */}
       <p className={`text-zinc-400 text-sm leading-relaxed mb-8 ${isRTL ? 'text-right' : ''}`}>
         {plan.description}
       </p>
 
-      {/* Divider */}
-      <div className={`h-px bg-zinc-800 mb-8 ${isHighlighted ? 'bg-emerald-500/20' : ''}`} />
+      <div className={`h-px mb-8 ${isHighlighted ? 'bg-emerald-500/20' : 'bg-zinc-800'}`} />
 
-      {/* Features */}
       <ul className={`space-y-4 flex-1 ${isRTL ? 'text-right' : ''}`}>
         {plan.features.map((feature, i) => (
           <li key={i} className="flex items-start gap-3">
@@ -257,7 +253,6 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
         ))}
       </ul>
 
-      {/* CTA Button */}
       <a
         href={WHATSAPP_LINK}
         target="_blank"
@@ -277,61 +272,131 @@ const PlanCard = ({ plan, isHighlighted, badge, index }) => {
   );
 };
 
+const PricingNavbar = () => {
+  const { lang } = useContext(LanguageContext);
+  return (
+    <nav className="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <a href="/" className="flex items-center gap-2 cursor-pointer transition-all duration-300 hover:opacity-80">
+            <Activity className="text-emerald-400 h-6 w-6" />
+            <span className="text-white font-black text-xl tracking-tighter uppercase">BLS <span className="text-emerald-400">SUPERBOT</span></span>
+          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-500 hover:bg-emerald-400 text-black px-5 py-2.5 rounded-lg text-sm font-black transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] whitespace-nowrap cursor-pointer"
+            >
+              Get License
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+const PricingFooter = () => {
+  const { lang } = useContext(LanguageContext);
+  const isRTL = lang === 'ar';
+  return (
+    <footer className="border-t border-white/10 bg-black py-12 text-start">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="flex items-center gap-2 mb-4 md:mb-0">
+          <Activity className="text-emerald-400 h-6 w-6" />
+          <span className="text-white font-black text-xl tracking-tighter uppercase">BLS <span className="text-emerald-400">SUPERBOT</span></span>
+        </div>
+        <p className="text-zinc-600 text-sm">
+          © 2026 BLS Superbot Technologies. All rights reserved. Version 7.0.4
+        </p>
+        <div className={`flex space-x-6 rtl:space-x-reverse mt-4 md:mt-0 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <a href="#" className="text-zinc-500 hover:text-emerald-400 transition-colors text-sm cursor-pointer">Terms</a>
+          <a href="#" className="text-zinc-500 hover:text-emerald-400 transition-colors text-sm cursor-pointer">Privacy</a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-emerald-400 transition-colors text-sm font-bold flex items-center gap-1 cursor-pointer">
+            <MessageCircle className="w-4 h-4" /> Support
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+const WhatsAppFloat = () => (
+  <a
+    href={WHATSAPP_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fixed bottom-6 end-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-black p-4 rounded-full shadow-[0_4px_14px_0_rgba(16,185,129,0.4)] hover:shadow-[0_6px_20px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group cursor-pointer"
+    aria-label="Contact on WhatsApp"
+  >
+    <MessageCircle className="w-8 h-8 stroke-[2.5]" />
+    <span className="absolute end-16 whitespace-nowrap bg-black/80 border border-white/10 text-white text-sm px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-bold">
+      Need help? Chat with us
+    </span>
+  </a>
+);
+
 const Pricing = () => {
   const { lang } = useContext(LanguageContext);
   const isRTL = lang === 'ar';
   const t = usePricingT();
+  const navT = pricingTranslations[lang]?.nav || pricingTranslations.en.nav;
 
   return (
-    <section
-      id="pricing"
-      className="relative py-24 overflow-hidden"
-      dir={isRTL ? 'rtl' : 'ltr'}
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d1117] to-[#0a0a0a]" />
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(16,185,129,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(16,185,129,0.06) 0%, transparent 50%)',
-      }} />
+    <div className="min-h-screen bg-black text-zinc-200" dir={isRTL ? 'rtl' : 'ltr'}>
+      <PricingNavbar />
+      <WhatsAppFloat />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-        backgroundSize: '60px 60px',
-      }} />
+      {/* Hero-like header */}
+      <section className="pt-40 pb-16 text-center relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
+        {/* Back link */}
+        <div className="max-w-6xl mx-auto px-4 mb-8">
+          <a href="/" className="inline-flex items-center gap-2 text-zinc-500 hover:text-emerald-400 text-sm font-medium transition-colors cursor-pointer">
+            <span className="text-lg">←</span>
+            {t.backHome}
+          </a>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
             {t.badge}
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
             {t.title}
-          </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-base leading-relaxed">
+          </h1>
+          <p className="text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
             {t.subtitle}
           </p>
         </div>
+      </section>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          <PlanCard plan={t.starter} isHighlighted={false} badge={t.starter.mostPopular} index={0} />
-          <PlanCard plan={t.agency} isHighlighted={true} badge={t.agency.mostPopular} index={1} />
-          <PlanCard plan={t.enterprise} isHighlighted={false} badge={t.enterprise.mostPopular} index={2} />
-        </div>
+      {/* Pricing Cards */}
+      <section className="pb-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <PlanCard plan={t.starter} isHighlighted={false} index={0} />
+            <PlanCard plan={t.agency} isHighlighted={true} index={1} />
+            <PlanCard plan={t.enterprise} isHighlighted={false} index={2} />
+          </div>
 
-        {/* USDT Note */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 bg-zinc-900/80 border border-zinc-800 rounded-xl px-6 py-4">
-            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
-            <p className="text-zinc-400 text-sm font-medium">
-              {t.usdtNote}
-            </p>
+          {/* USDT Note */}
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-800 rounded-xl px-6 py-4">
+              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+              <p className="text-zinc-400 text-sm font-medium">
+                {t.usdtNote}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <PricingFooter />
+    </div>
   );
 };
 
